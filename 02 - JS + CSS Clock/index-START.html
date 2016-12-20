@@ -71,29 +71,22 @@
     let minHand = document.querySelector('.min-hand');
     let secondHand = document.querySelector('.second-hand');
 
-    let secondRotation = 90;
-    let minRotation = 90;
-    let hourRotation = 90;
-    let count = 1;
-
     this.setInterval(() => {
-        secondRotation += 6;
         let date = new Date();
-        let currentTime = date.getTime();
-        console.log(currentTime);
-        secondHand.style.transform = `rotate(${secondRotation}deg)`;
 
-        console.log(count);
-        if (count % 60 === 0) {
-            minRotation += 6;
-            minHand.style.transform = `rotate(${minRotation}deg)`;
-        }
-        if (count % 3600 === 0) {
-            //hour
-        }
-        count++;
+        let seconds = date.getSeconds();
+        let secondsDegrees = ((seconds / 60) * 360) + 90;
+
+        let minutes = date.getMinutes();
+        let minutesDegrees = ((minutes / 60) * 360) + 90;
+
+        let hours = date.getHours();
+        let hourDegrees = ((hours / 12) * 360) + 90;
+
+        secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+        minHand.style.transform = `rotate(${minutesDegrees}deg)`;
+        hourHand.style.transform = `rotate(${hourDegrees}deg)`;
     }, 1000);
-
 </script>
 </body>
 </html>
